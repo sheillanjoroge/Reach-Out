@@ -3,6 +3,8 @@
 #### An app that allows a user to be in the loop about everything happening in the Health Sector stats through viewing  and adding approved stats/collected data.
 
 ### By Sheilla Njoroge 
+
+### Project Image
          
 
 ## Setup/Installation Requirements
