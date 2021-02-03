@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{{block.super}}
+{% block content %}
+
+<div class="container" style="width:700px;">
+    <h4 style="color: green; border:solid purple 0.01em; width: fit-content; padding:5px 15px;">Announcements</h4>
+</div>
+<div class="container" style=" border: solid purple 0.01em; height: 480px; max-height: 470px; width:700px; overflow-y: scroll;">        
+    <!-- Announcement loop-->
+    {% for info in news %}
+        <h5 style="font-weight: bold; color: purple; padding: 10px;">{{info.title}}</h5>
+        <p style="text-align: center;"> {{info.content}}</p>                    
+        <p> <span style="padding-left: 70%; font-weight:bold">posted by: {{info.user.username}} </span> {{info.date}}</p>        
+    <hr>
+    {% endfor%}
+
+    <!-- endloop -->
+</div>
+    
+{% endblock %}

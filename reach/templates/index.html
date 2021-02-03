@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+{{block.super}}
+{% block content %}    
+    <div class="container-fluid">                
+        <div class="row" style="padding: 0 10px;">            
+            <div class="col-md-4">            
+                <!-- Announcements section-->
+                <div class="head"  style="width: fit-content; background-color: white; position:absolute; margin-left: 40px;">
+                    <h6 style="padding:0 10px; color: green;">Announcements</h6>
+                </div>
+                <div class="container" style="background-color: #e8d2fa; margin-top: 15px;">                  
+                  <div class="container" style="border-radius: 5px; height: 250px; max-height:235px; padding-top: 25px; overflow-y: scroll;">
+                    
+                    <!--loop -->
+                {% if announcements %}
+                    {% for announcement in announcements %}
+                        <a href="/announce/{{ announcement.id }}" style="color: black;">
+                            <div class="card" style="height: fit-content;">
+                                <h5 style="padding:0 5px; color: purple; font-weight:bold;">{{ announcement.title }}</h5>
+                                <p style="padding-left: 35px;">{{ announcement.content | truncatewords:5 }}</p>
+                                <p style="padding-left:55%;"><span style="font-weight:bold;">{{ announcement.user.username }}</span></p>                        
+                            </div>
+                        </a>                
+                        <hr>
+                        {% endfor %}
+                {% else %}
+                    <div class="card" style="height: fit-content;">
+                        <h5 style="padding:0 5px; color: purple; font-weight:bold;">No announcements</h5>
+                        <p style="padding-left: 35px;"> If you have any, contact your admin to add them.</p>                            
+                    </div>
+                {% endif %}
+                    <!-- endloop -->
+
+                  </div>  
+                </div>
+                
+                <br>
+
+                <!-- Meetings section -->
+                <div class="head"  style="width: fit-content; background-color: white; position:absolute; margin-left: 40px;">
+                    <h6 style="padding:0 10px; color: purple;">Seminars</h6>
+                </div>
+                <div class="container" style="background-color:  ##e8d2fa;; margin-top: 15px;">                  
+                  <div class="container" style="border-radius: 5px; height: 200px; max-height:190px; padding-top: 25px; overflow-y: scroll;">
+                 
+                {% if meetings %}    
+                <button class="btn btn-success" onclick="window.location.href = '/meeting';">View more</button> 
+                    <!--loop -->
+                    {% for meeting in meetings %}
+                    <a href="/meeting/{{ meeting.id }}" style="color: black;">
+                        <div class="card" style="height: fit-content;">
+                            <h5 style="padding:0 5px; color: purple; font-weight:bold;">{{meeting.title}}</h5>
+                            <p style="padding-left: 35px;">{{meeting.description}}</p>
+                            <p style="display: inline-block; padding: 10px;"> Venue:<span style="font-weight:bold;padding-right:20px; ">{{meeting.venue}}</span> -<span style="font-weight:bold;">{{meeting.user.username}}</span></p>                                                    
+                        </div>
+                    </a>                
+                    <hr>
+                    {% endfor %}
+                    <!-- endloop -->
+                {% else %}
+                    <div class="card" style="height: fit-content;">
+                        <h5 style="padding:0 5px; color: purple; font-weight:bold;">No meetings in your region</h5>
+                        <p style="padding-left: 35px;"> Contact your admin to add a scheduled meeting or seminars</p>                            
+                    </div>
+                {% endif %}
+
+                  </div>  
+                </div>
+            </div>            
+
+            <!-- Blog content-->
+            <div class="col-md-4">
+                <br>
+                <div class="container" style="height: 470px; background-color: #e8d2fa; max-height: 460; overflow-y: scroll;">
+                    
+                    <!--loop -->
+                    <a href="{% url 'blog' %}" style="color: black;"><div class="card" style="height: fit-content">
+                        <div class="img">
+                            <h4 style="position: absolute; color: white; padding: 15px;"> Covid-19 Vaccine is Out!!</h4>
+                        </div>                                                
+                        <div class="card-body">                            
+                            <p style="padding-left: 15px;">The much awaited Covid-19 Vaccine. The administration is on...</p>
+                            <p style=" padding-right:55px;"> - <span style="font-weight:bold;">Any burning issue?</span></p>                        
+                        </div>
+                    </div></a>
+                    <!-- endloop -->
+
+                </div>               
+            </div>      
+
+            <!-- Esssentials section -->
+            <div class="col-md-4">            
+                <br>                
+                <div class="head"  style="width: fit-content; position:absolute; margin-left: 40px; background-color: white;">
+                    <h6 style="padding:0 10px; color: rgb(155, 118, 32);">Essentials</h6>
+                </div>
+                <div class="container" style="background-color:#f8ffdaf3; margin-top: 15px;">                  
+                  <div class="container" style="border-radius: 5px; height: 200px; max-height:190px;padding-top: 20px; overflow-y: scroll;">                    
+
+                    <!--loop -->
+                {% if essentials %}
+                    {% for essential in essentials %}
+                        <a href="/essential/{{ essential.id }}" style="color: black;">
+                            <div class="card" style="height: fit-content;">
+                                <h5 style="padding:0 5px; color: purple; font-weight:bold;">{{ essential.name}}</h5>
+                                <p style="padding-left: 35px;">{{ essential.description | truncatewords:5 }}</p>
+                                <p style="padding-left:55%;"><span style="font-weight:bold;">{{ essential.user.username }}</span></p>                        
+                            </div>
+                        </a>                
+                        <hr>
+                    {% endfor %}
+                {% else %}
+                    <div class="card" style="height: fit-content;">
+                        <h5 style="padding:0 5px; color: purple; font-weight:bold;">No Essential Services available</h5>
+                        <p style="padding-left: 35px;"> Contact your admin to add them.</p>                            
+                    </div>
+                {% endif %}
+                    <!-- endloop -->
+
+                  </div>  
+                </div>
+
+                <br>
+
+                <!-- Business section -->
+                <div class="head"  style="width: fit-content; background-color: white; position:absolute; margin-left: 40px;">
+                    <h6 style="padding:0 10px; color: rgb(143, 124, 19);">A O Bs</h6>
+                </div>
+                <div class="container" style="background-color: #ecfad2 ; margin-top: 15px;">                  
+                  <div class="container" style="border-radius: 5px; height: 200px; max-height:190px; padding-top: 20px; overflow-y: scroll;">
+                   
+                    <!--loop -->
+                  {% if businesses %}
+                  <button class="btn btn-success" onclick="window.location.href = '/business';">View more</button> 
+                  {% for biz in businesses %}
+                  <a href="/business/{{biz.id}}" style="color: black;">
+                      <div class="card" style="height: fit-content;">
+                          <h5 style="padding:0 5px; color: purple; font-weight:bold;">{{ biz.name }}</h5>
+                          <p style="padding-left: 35px;">{{ biz.description | truncatewords:5}}</p>                            
+                      </div>
+                  </a>             
+                  <hr>
+                  {% endfor %} 
+                  {% else %}
+                  <div class="card" style="height: fit-content;">
+                    <h5 style="padding:0 5px; color: purple; font-weight:bold;">Nothing here!</h5>
+                    <p style="padding-left: 35px;"> Ask your admin to add them.</p>                            
+                  </div>
+                  {% endif %} 
+                    
+                    <!-- endloop -->
+
+                  </div>  
+                </div>
+                                
+            </div>
+        </div>
+    </div>
+    <style>
+        .img {
+            background: linear-gradient(to top,  transparent, hsla(0, 0%, 6%, 0.479)) , url(https://images.unsplash.com/photo-1524813686514-a57563d77965?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80);    
+            background-size: cover;
+            background-repeat: no-repeat;
+            width: 100%;
+            height: 250px;
+        }        
+    </style>
+{% endblock %}

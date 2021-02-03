@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{{block.super}}
+{% block content %}
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+<div class="container">
+    <div class="row">
+        <div class="col"></div>
+        <div class="col-md-8" style="text-align: center;">
+            <div class="container">
+                <div class="card">
+                    <div class="row">
+                        <div class="col">
+                            <img src="https://images.unsplash.com/photo-1532619675605-1ede6c2ed2b0?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" style="width:380px; height:360px;">                    
+                            <button type="button" class="btn" data-toggle="modal" data-target="#profilepicture" style="background:rgba(255, 255, 255, 0.603); position:absolute; bottom:5px; right: 25px;">Edit</button>
+                        </div>
+                        <div class="col">                            
+                            <h5 style="margin-top: 20%; color: purple; font-weight: bold;">Username</h5>
+                            <h6 style="color: grey; padding-top: 20px;">usersampleuser@gmail.com</h6>
+                            <p style="padding-top: 20px;"><em>Profession</em></p>
+                            <button type="button" class="btn" data-toggle="modal" data-target="#editprofile" style="background:rgba(255, 255, 255, 0.603); position:absolute; bottom:5px; right: 25px;">Edit Profile</button>        
+                        </div>
+                        
+                        <!--Edit profile pictire modal -->
+                        <div class="modal fade" id="profilepicture" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4>Upload a new profile picture</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="post" enctype="multipart/form-data" action="/profile">
+                                            {% csrf_token %}            
+                                            <input type="file" name="profile" id="upload">
+                                            <button type="submit" class="btn btn-success">Change profile</button>
+                                            <img src="{{ user.picture.url}}" alt="">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                        <!-- end of modal--> 
+
+                        <!--Edit profile modal -->
+                        <div class="modal fade" id="editprofile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4>Update profile</h4>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form action="/profile" method="POST">
+                                            {% csrf_token %}
+                                            <div class="col">
+                                                <div class="row" style="padding: 15px;">
+                                                    <input type="text" class="form-control" name="name" placeholder="{{ user.profile.name }}" style="background-color: rgba(22, 192, 50, 0.137);">
+                                                </div>
+                                                <div class="row" style="padding: 15px;">                                                    
+                                                    <input type="text" class="form-control" name="location" placeholder="{{ user.profile.location }}" style="background-color: rgba(22, 192, 50, 0.137);">
+                                                </div>
+                                                <div class="row" style="padding: 15px;">
+                                                    <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" style="width: 200px;" name='neighbourhood'>
+                                                        <option selected value="{{user.profile.neighbourhood.id}}">{{user.profile.neighbourhood.name}}</option>
+                                                        {% for hood in hoods %}
+                                                        <option value="{{hood.id}}">{{ hood.name }}</option>
+                                                        {% endfor %}
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-success">Update profile</button>
+
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                        <!-- end of modal--> 
+                        
+                    </div>      
+                </div>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+</div>                
+</div>               
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+{% endblock %}

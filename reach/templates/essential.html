@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{{block.super}}
+{% block content %}
+
+    <div class="container" style="width:650px;">
+        <h4 style="color: purple; border:solid purple 0.01em; width: fit-content; padding:5px 15px;">Essential Services</h4>
+    </div>
+    <div class="container" style="border: solid purple 0.01em; height: 480px; max-height: 470px; width:650px; overflow-y: scroll;">        
+        <!-- Essential loop-->
+         {% for essential in essentials %}
+          <h5 style="font-weight: bold;padding:15px ; color: purple;">{{essential.name }}</h5> 
+          <p style="text-align: center;"> {{essential.description}}</p>         
+          <p style="text-align: center;"> <span style="font-weight:bold;">Help Line: </span>{{essential.contact }}</p>
+          <p style="margin-left:70%;"> <span style="font-weight:bold ">posted by: </span> {{essential.user.username}} </p>        
+        <hr>
+        {% endfor %}
+        <!-- endloop -->
+    </div>
+    
+{% endblock %}

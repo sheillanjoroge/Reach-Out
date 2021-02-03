@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link href='https://fonts.googleapis.com/css?family=Courgette' rel='stylesheet'>
+    </head>
+    <body>
+        <div class="contain" style="width: 100%;">
+            <div class="jumbotron jumbo" >                
+            </div>
+            <div class="row">
+                <div class="col-md-4">                    
+                </div>
+                <div class="col-md-4">
+                    <a href="{% url 'home' %}"><h5 class="heading"> ReachOut</h5></a>
+                    <p style="color: blue;text-align: center;"><em>Get updated with your regional health data...</em></p>                    
+                </div>
+                <div class="col-md-4">
+                    
+                    <div class="container" style="padding: 8px; background-color: #eeeed5; width: fit-content;">
+                        <a href="/profile">
+                            <img src="{{ user.picture.url }}" style="height:50px; width: 50px; border-radius: 50%; display: inline-block;">
+                        </a>
+                        <h6 style="display: inline-block; font-weight:bold;"> <span style="padding-right: 5px;">Username</span>  <span style="border-left:solid grey 0.01em; padding: 10px; font-size: 15px;;">Log Out</span></h6>
+                    </div>
+                </div>
+            </div>
+            <br>
+        </div>
+        {% block content %}
+
+        {% endblock %}
+        <style> 
+            .jumbo {
+                background: linear-gradient(to top,  hsla(20, 3%, 22%, 0.465), hsla(20, 2%, 30%, 0.39)) , url(https://images.unsplash.com/photo-1524813686514-a57563d77965?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80);
+                border-radius: 0;
+            }          
+            .heading {
+                padding-left: 60px;
+                text-align: center;
+                font-family: 'Courgette';   
+                font-size: 55px;                                                   
+                background: #56ab2f;  /* fallback for old browsers */
+                background: -webkit-linear-gradient(to right, #a8e063, #56ab2f);  /* Chrome 10-25, Safari 5.1-6 */
+                background: linear-gradient(to right, #a8e063, #56ab2f); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+                background-clip: text;                
+                text-decoration-color: transparent;
+                -webkit-background-clip: text;
+                -moz-background-clip: text;
+                -webkit-text-fill-color: transparent; 
+                -moz-text-fill-color: transparent;
+                -webkit-text-stroke: 0.001em black;                
+            }
+        </style>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    </body>
+</html>

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{{block.super}}
+{% block content %}
+    <div class="container" style="border: solid green 0.01em;">
+        
+        <div class="row" >
+            <div class="col-md-3 business">            
+                <h2 style="color: white;padding: 10px; text-align: center;">AOB<sup style="color: purple; font-weight: bolder;">+</sup></h2>
+            </div>
+            <div class="col-md-9" style="padding: 0 70px;">
+                <form  action="{%url 'add-business'%}" method="post" enctype="multipart/form-data">
+                     {% csrf_token %}
+                    {% bootstrap_form form %}
+                    <div class="form-group" style="text-align: center;">
+                        <input type="submit" class="btn btn-md" style="background-color: #ecfad2; color: white; width: 200px;" value="Register Business">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <style>
+        .business {
+            background: linear-gradient(to top,  transparent, hsla(0, 0%, 6%, 0.795)) , url(https://images.clipartlogo.com/files/istock/previews/6540/65408457-white-paper-currency-signs-on-green-background.jpg);    
+            background-size: cover;            
+        }
+    </style>
+{% endblock %}

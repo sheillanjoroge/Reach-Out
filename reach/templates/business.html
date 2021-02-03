@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{{block.super}}
+{% block content %}
+    {% if user.is_admin %}
+    <div class="container" style="width:650px;">
+      <div class="row">
+        <div class="col">
+          <h4 style="color: white; background: purple; width: fit-content; padding:5px 15px; display:inline-block;">Any Health Info Collected data</h4>    
+        </div>
+        <div class="col">
+          <form class="form-inline d-flex justify-content-center md-form form-sm active-purple-2 mt-2" action="{% url 'search_results' %}">
+              <input class="form-control form-control-sm mr-3 w-75" style="background: transparent;border: none;" type="text" placeholder="Search" name="current data">
+              <button class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+          </form>
+        </div>
+        <div class="col-md-2">
+          <a href="/new/statics/" class="btn btn" style="background-color: #56ab2f; color: white;">+Data</a>
+        </div>
+      </div>    
+    </div>
+    {% else %}
+    <div class="container" style="width:650px;">
+      <div class="row">
+        <div class="col">
+          <h4 style="color: white; background: purple; width: fit-content; padding:5px 15px; display:inline-block;">Biz in the hood</h4>    
+        </div>
+        <div class="col">
+          <form class="form-inline d-flex justify-content-center md-form form-sm active-purple-2 mt-2" action="{% url 'search_results' %}">
+              <input class="form-control form-control-sm mr-3 w-75" style="background: transparent;border: none;" type="text" placeholder="Search" name="business">
+              <button class="btn btn-default" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+          </form>
+        </div>
+      </div>    
+    </div>
+    {% endif %}
+    <div class="container" style="text-align: center; border: solid green 0.01em; height: 480px; max-height: 470px; width:650px; overflow-y: scroll;">  
+    {% if businesses%}
+      {% for business in businesses %}
+      <h5 style="font-weight: bold; color: purple;">{{business.name}}</h5>
+      <p> {{business.description}}</p>   
+      <h6 style="color: grey; padding:20px;"> ------Business Info-------</h6>       
+      <p> <span style="font-weight:bold">{{business.email}}</p>
+      <p> <span style="font-weight:bold">posted by: </span> {{business.user.username}}</p>        
+      <hr>
+      {% endfor%} 
+    {% else %}
+      {% for bizna in biznas %}
+      <h5 style="font-weight: bold; color: purple;">{{bizna.name}}</h5>
+      <p> {{bizna.description}}</p>   
+      <h6 style="color: grey; padding:20px;"> ------Any Other Business Info-------</h6>       
+      <p> <span style="font-weight:bold">{{bizna.email}}</p>
+      <p> <span style="font-weight:bold">posted by: </span> {{bizna.user.username}}</p>        
+      <hr>
+      {% endfor%}  
+    {% endif %}
+     
+  </div>
+
+{% endblock %}

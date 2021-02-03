@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{{block.super}}
+{% block content %}    
+    
+    <div class="container" style="width:650px;">
+        <h4 style="color: white; background: purple; width: fit-content; padding:5px 15px;">Meetings</h4>
+    </div>
+    <div class="container" style="text-align: center; border: solid purple 0.01em; height: 480px; max-height: 470px; width:650px; overflow-y: scroll;">        
+        <!-- Meeting loop-->
+        {% for meeting in meetings %}
+          <h5 style="font-weight: bold; color: purple;">{{meeting.title}}</h5>
+          <p>{{meeting.description}}</p>          
+          <p> <span style="font-weight:bold">Venue </span> {{meeting.venue}}</p>
+          <p> <span style="font-weight:bold">posted by:{{meeting.user.username}} </span> {{meeting.date}} </p>        
+        <hr>
+        {% endfor %}
+        <!-- endloop -->
+    </div>
+    
+{% endblock %}
