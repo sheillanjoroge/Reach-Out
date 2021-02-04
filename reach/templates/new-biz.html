@@ -2,7 +2,7 @@
 {% load bootstrap4 %}
 {{block.super}}
 {% block content %}
-    <div class="container" style="border: solid green 0.01em;">
+    <div class="container" style="border: solid purple 0.01em;">
         
         <div class="row" >
             <div class="col-md-3 business">            
@@ -13,7 +13,7 @@
                      {% csrf_token %}
                     {% bootstrap_form form %}
                     <div class="form-group" style="text-align: center;">
-                        <input type="submit" class="btn btn-md" style="background-color: #ecfad2; color: white; width: 200px;" value="Register Business">
+                        <input type="submit" class="btn btn-md" style="background-color: #ecfad2; color: white; width: 200px;" value="Register">
                     </div>
                 </form>
             </div>

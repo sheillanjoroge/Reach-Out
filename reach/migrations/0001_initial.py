@@ -101,7 +101,7 @@ class Migration(migrations.Migration):
                 ('description', models.TextField()),
                 ('venue', models.CharField(max_length=150)),
                 ('date', models.DateTimeField(auto_now_add=True)),
-                ('hood', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='neighbourhood.Hood')),
+                ('hood', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='reach.Hood')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
@@ -111,14 +111,14 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(default='', max_length=50)),
                 ('location', models.CharField(default='', max_length=100)),
-                ('neighbourhood', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='neighbourhood.Hood')),
+                ('reach', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='reach.Hood')),
                 ('user', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
         migrations.AddField(
             model_name='essential',
             name='hood',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='neighbourhood.Hood'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='reach.Hood'),
         ),
         migrations.AddField(
             model_name='essential',
@@ -128,7 +128,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='business',
             name='hood',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='neighbourhood.Hood'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='reach.Hood'),
         ),
         migrations.AddField(
             model_name='business',
@@ -138,7 +138,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='blog',
             name='hood',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='neighbourhood.Hood'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='reach.Hood'),
         ),
         migrations.AddField(
             model_name='blog',
@@ -148,7 +148,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='announcement',
             name='hood',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='neighbourhood.Hood'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='reach.Hood'),
         ),
         migrations.AddField(
             model_name='announcement',
